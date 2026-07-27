@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+	color-scheme: light;
+	--color-page: #f8fafc;
+	--color-surface: rgb(248 250 252 / 88%);
+	--color-surface-strong: #f8fafc;
+	--color-text: #0f172a;
+	--color-text-muted: #64748b;
+	--color-text-soft: #475569;
+	--color-accent: #14b8a6;
+	--color-accent-strong: #2dd4bf;
+	--color-accent-soft: rgb(20 184 166 / 10%);
+	--color-accent-hover: rgb(45 212 191 / 12%);
+	--color-border: rgb(203 213 225 / 78%);
+	--color-border-strong: rgb(20 184 166 / 50%);
+	--color-shadow: rgb(15 23 42 / 12%);
+}
+
+:root[data-theme="dark"] {
+	color-scheme: dark;
+	--color-page: #0f172a;
+	--color-surface: rgb(30 41 59 / 94%);
+	--color-surface-strong: #475569;
+	--color-text: #f8fafc;
+	--color-text-muted: #cbd5e1;
+	--color-text-soft: #cbd5e1;
+	--color-accent: #2dd4bf;
+	--color-accent-strong: #14b8a6;
+	--color-accent-soft: rgb(45 212 191 / 12%);
+	--color-accent-hover: rgb(20 184 166 / 16%);
+	--color-border: rgb(100 116 139 / 48%);
+	--color-border-strong: rgb(45 212 191 / 58%);
+	--color-shadow: rgb(15 23 42 / 55%);
+}
+
+html {
+	min-width: 320px;
+	background: var(--color-page);
+	scroll-behavior: smooth;
+	transition:
+		background-color 180ms ease,
+		color 180ms ease;
+}
+
+body {
+	margin: 0;
+}
+
+button,
+a {
+	-webkit-tap-highlight-color: transparent;
+}
