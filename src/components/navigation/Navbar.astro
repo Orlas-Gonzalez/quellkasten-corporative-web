@@ -293,12 +293,12 @@ const navigationItems = [
 			);
 			if (description) description.content = copy.documentDescription;
 
-			navbar.querySelectorAll<HTMLElement>('[data-i18n]').forEach((element) => {
+			document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((element) => {
 				const key = element.dataset.i18n as TranslationKey | undefined;
 				if (key) element.textContent = copy[key];
 			});
 
-			navbar.querySelectorAll<HTMLElement>('[data-i18n-aria]').forEach((element) => {
+			document.querySelectorAll<HTMLElement>('[data-i18n-aria]').forEach((element) => {
 				const key = element.dataset.i18nAria as TranslationKey | undefined;
 				if (key) element.setAttribute('aria-label', copy[key]);
 			});

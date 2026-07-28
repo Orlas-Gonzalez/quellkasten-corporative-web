@@ -2,7 +2,7 @@ export const defaultLanguage = 'es';
 
 export const translations = {
 	es: {
-		documentTitle: 'Quellkasten',
+		documentTitle: 'Quellkasten | Soluciones de Software para Empresas',
 		documentDescription: 'Sitio corporativo de Quellkasten',
 		navLabel: 'Navegación principal',
 		brandHomeLabel: 'Quellkasten, página de inicio',
@@ -19,9 +19,22 @@ export const translations = {
 		languageToSpanish: 'Cambiar idioma a español',
 		menuOpen: 'Abrir menú de navegación',
 		menuClose: 'Cerrar menú de navegación',
+		heroTitle: 'Ingeniería de software diseñada',
+		heroTitleAccent: 'para impulsar tu crecimiento.',
+		heroDescription:
+			'Diseñamos soluciones digitales robustas y escalables, alineadas con los objetivos reales de tu negocio.',
+		heroPrimaryCta: 'Cuéntanos tu idea de proyecto',
+		heroSecondaryCta: 'Conoce nuestros servicios',
+		heroSolutionsLabel: 'Soluciones que podemos construir contigo',
+		heroSolutionDashboards: 'Dashboards y analítica',
+		heroSolutionAutomation: 'Automatización de reportes y KPIs',
+		heroSolutionPlatforms: 'Plataformas web a la medida',
+		heroSolutionLanding: 'Landing pages',
+		heroSolutionInternal: 'Sistemas internos y portales',
+		heroSolutionIntegrations: 'Integraciones y APIs',
 	},
 	en: {
-		documentTitle: 'Quellkasten',
+		documentTitle: 'Quellkasten | Enterprise Software Solutions',
 		documentDescription: 'Quellkasten corporate website',
 		navLabel: 'Main navigation',
 		brandHomeLabel: 'Quellkasten, home page',
@@ -38,6 +51,19 @@ export const translations = {
 		languageToSpanish: 'Switch language to Spanish',
 		menuOpen: 'Open navigation menu',
 		menuClose: 'Close navigation menu',
+		heroTitle: 'Software engineering designed',
+		heroTitleAccent: 'to drive your growth.',
+		heroDescription:
+			'We design robust, scalable digital solutions aligned with your business goals.',
+		heroPrimaryCta: 'Tell us about your project idea',
+		heroSecondaryCta: 'Explore our services',
+		heroSolutionsLabel: 'Solutions we can build with you',
+		heroSolutionDashboards: 'Dashboards & analytics',
+		heroSolutionAutomation: 'Reporting & KPI automation',
+		heroSolutionPlatforms: 'Custom web platforms',
+		heroSolutionLanding: 'Landing pages',
+		heroSolutionInternal: 'Internal systems & portals',
+		heroSolutionIntegrations: 'API integrations',
 	},
 } as const;
 

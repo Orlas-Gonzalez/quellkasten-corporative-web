@@ -1,0 +1,146 @@
+---
+import Container from '../../../components/ui/Container.astro';
+import NeuralNetwork from './NeuralNetwork.astro';
+
+const solutionTypes = [
+	{
+		label: 'Dashboards y analítica',
+		translationKey: 'heroSolutionDashboards',
+		iconPath: 'M4 4h7v7H4V4Zm9 0h7v4h-7V4Zm0 6h7v10h-7V10ZM4 13h7v7H4v-7Z',
+	},
+	{
+		label: 'Automatización de reportes y KPIs',
+		translationKey: 'heroSolutionAutomation',
+		iconPath: 'M4 19V9m5 10V5m5 14v-7m5 7V3M3 19h18',
+	},
+	{
+		label: 'Plataformas web a la medida',
+		translationKey: 'heroSolutionPlatforms',
+		iconPath: 'M3 5h18v14H3V5Zm0 4h18M7 7h.01',
+	},
+	{
+		label: 'Landing pages',
+		translationKey: 'heroSolutionLanding',
+		iconPath: 'M4 4h16v16H4V4Zm0 5h16m-5 4 4 2-2 1 1 3-1.5.7-1-3-2 1v-4Z',
+	},
+	{
+		label: 'Sistemas internos y portales',
+		translationKey: 'heroSolutionInternal',
+		iconPath: 'M16 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2m6.5-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7.5 1 2 2 4-4',
+	},
+	{
+		label: 'Integraciones y APIs',
+		translationKey: 'heroSolutionIntegrations',
+		iconPath: 'M8 6h8M6 8v8m12-8v8M8 18h8M4 4h4v4H4V4Zm12 0h4v4h-4V4ZM4 16h4v4H4v-4Zm12 0h4v4h-4v-4Z',
+	},
+];
+---
+
+<section
+	id="inicio"
+	aria-labelledby="hero-title"
+	class="relative isolate overflow-hidden py-16 sm:py-20 lg:py-24"
+>
+	<div
+		aria-hidden="true"
+		class="absolute -left-32 top-20 -z-10 size-72 rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"
+	></div>
+	<div
+		aria-hidden="true"
+		class="absolute -right-24 bottom-0 -z-10 size-80 rounded-full bg-[var(--color-accent-strong)] opacity-[0.1] blur-3xl"
+	></div>
+
+	<Container>
+		<div class="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+			<div class="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
+				<h1
+					id="hero-title"
+					class="text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-[var(--color-text)] sm:text-5xl lg:text-6xl"
+				>
+					<span data-i18n="heroTitle">Ingeniería de software diseñada</span>
+					{' '}
+					<span
+						data-i18n="heroTitleAccent"
+						class="inline bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-strong)] bg-clip-text text-transparent"
+					>
+						para impulsar tu crecimiento.
+					</span>
+				</h1>
+
+				<p
+					data-i18n="heroDescription"
+					class="mx-auto mt-6 max-w-2xl text-base leading-7 text-[var(--color-text-muted)] sm:text-lg sm:leading-8 lg:mx-0"
+				>
+					Diseñamos soluciones digitales robustas y escalables, alineadas con los objetivos
+					reales de tu negocio.
+				</p>
+
+				<div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
+					<a
+						href="#contacto"
+						class="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-[#0f172a] shadow-[0_12px_30px_var(--color-shadow)] outline-none transition duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-page)]"
+					>
+						<span data-i18n="heroPrimaryCta">Cuéntanos tu idea de proyecto</span>
+						<svg
+							aria-hidden="true"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							class="size-4 transition-transform group-hover:translate-x-0.5"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5"></path>
+						</svg>
+					</a>
+					<a
+						href="#servicios"
+						class="inline-flex min-h-12 items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-3 text-sm font-semibold text-[var(--color-text)] outline-none transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:bg-[var(--color-accent-hover)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-page)]"
+					>
+						<span data-i18n="heroSecondaryCta">Conoce nuestros servicios</span>
+					</a>
+				</div>
+
+				<div class="mt-10 border-t border-[var(--color-border)] pt-6">
+					<p
+						data-i18n="heroSolutionsLabel"
+						class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]"
+					>
+						Soluciones que podemos construir contigo
+					</p>
+					<ul class="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+						{
+							solutionTypes.map(({ label, translationKey, iconPath }) => (
+								<li class="group flex min-h-16 items-center gap-2.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5 transition-colors hover:border-[var(--color-border-strong)] hover:bg-[var(--color-accent-hover)]">
+									<span
+										aria-hidden="true"
+										class="grid size-8 shrink-0 place-items-center rounded-lg bg-[var(--color-accent-soft)] text-[var(--color-accent)] transition-transform group-hover:scale-105"
+									>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="size-4"
+										>
+											<path d={iconPath} />
+										</svg>
+									</span>
+									<span
+										data-i18n={translationKey}
+										class="text-left text-[11px] font-medium leading-4 text-[var(--color-text-soft)] sm:text-xs"
+									>
+										{label}
+									</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+
+			<NeuralNetwork />
+		</div>
+	</Container>
+</section>
