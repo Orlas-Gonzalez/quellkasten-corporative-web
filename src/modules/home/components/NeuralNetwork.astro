@@ -1,0 +1,334 @@
+<div
+	data-neural-network
+	aria-hidden="true"
+	class="relative mx-auto aspect-square w-full max-w-[36rem] overflow-hidden rounded-[2.5rem]"
+>
+	<div
+		class="pointer-events-none absolute inset-[15%] rounded-full bg-[var(--color-accent)] opacity-[0.08] blur-3xl"
+	></div>
+	<canvas
+		data-neural-canvas
+		class="absolute inset-0 size-full touch-none"
+	></canvas>
+</div>
+
+<script>
+	interface NetworkNode {
+		x: number;
+		y: number;
+		vx: number;
+		vy: number;
+		radius: number;
+		phase: number;
+	}
+
+	interface SignalPulse {
+		from: number;
+		to: number;
+		progress: number;
+		speed: number;
+	}
+
+	interface PointerPosition {
+		x: number;
+		y: number;
+	}
+
+	const networks = document.querySelectorAll<HTMLElement>('[data-neural-network]');
+
+	networks.forEach((container) => {
+		const canvas = container.querySelector<HTMLCanvasElement>('[data-neural-canvas]');
+		const context = canvas?.getContext('2d');
+
+		if (!canvas || !context) return;
+
+		let width = 0;
+		let height = 0;
+		let animationFrame = 0;
+		let lastFrameTime = 0;
+		let nodes: NetworkNode[] = [];
+		let pulses: SignalPulse[] = [];
+		let pointer: PointerPosition | null = null;
+		let accentColor = '#14b8a6';
+		let accentStrongColor = '#2dd4bf';
+		let connectionColor = '#64748b';
+
+		const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+		const readPalette = () => {
+			const styles = getComputedStyle(document.documentElement);
+			accentColor = styles.getPropertyValue('--color-accent').trim() || '#14b8a6';
+			accentStrongColor =
+				styles.getPropertyValue('--color-accent-strong').trim() || '#2dd4bf';
+			connectionColor =
+				styles.getPropertyValue('--color-text-muted').trim() || '#64748b';
+		};
+
+		const createNode = (): NetworkNode => {
+			const direction = Math.random() * Math.PI * 2;
+			const speed = 6 + Math.random() * 8;
+
+			return {
+				x: 28 + Math.random() * Math.max(width - 56, 1),
+				y: 28 + Math.random() * Math.max(height - 56, 1),
+				vx: Math.cos(direction) * speed,
+				vy: Math.sin(direction) * speed,
+				radius: 1.7 + Math.random() * 2.5,
+				phase: Math.random() * Math.PI * 2,
+			};
+		};
+
+		const resetPulse = (pulse?: SignalPulse): SignalPulse => {
+			const from = Math.floor(Math.random() * nodes.length);
+			let to = Math.floor(Math.random() * nodes.length);
+
+			if (to === from) to = (to + 1) % nodes.length;
+
+			const nextPulse = pulse ?? { from, to, progress: 0, speed: 0 };
+			nextPulse.from = from;
+			nextPulse.to = to;
+			nextPulse.progress = Math.random() * -0.8;
+			nextPulse.speed = 0.12 + Math.random() * 0.1;
+
+			return nextPulse;
+		};
+
+		const rebuildNetwork = () => {
+			const nodeCount = width < 480 ? 24 : 38;
+			const pulseCount = width < 480 ? 6 : 10;
+			nodes = Array.from({ length: nodeCount }, createNode);
+			pulses = Array.from({ length: pulseCount }, () => resetPulse());
+		};
+
+		const resize = () => {
+			const bounds = container.getBoundingClientRect();
+			const nextWidth = Math.max(bounds.width, 1);
+			const nextHeight = Math.max(bounds.height, 1);
+			const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+			if (nextWidth === width && nextHeight === height) return;
+
+			width = nextWidth;
+			height = nextHeight;
+			canvas.width = Math.round(width * pixelRatio);
+			canvas.height = Math.round(height * pixelRatio);
+			canvas.style.width = `${width}px`;
+			canvas.style.height = `${height}px`;
+			context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+			rebuildNetwork();
+			draw(0);
+		};
+
+		const updateNodes = (delta: number) => {
+			const elapsedSeconds = delta / 1000;
+			const influenceRadius = Math.min(width, height) * 0.28;
+			const pointerDisplacementSpeed = 26;
+			const boundaryMargin = 34;
+			const boundaryForce = 11;
+			const maximumSpeed = 14;
+
+			nodes.forEach((node) => {
+				node.phase += elapsedSeconds * 0.7;
+
+				if (pointer) {
+					const dx = node.x - pointer.x;
+					const dy = node.y - pointer.y;
+					const distance = Math.hypot(dx, dy);
+
+					if (distance > 0 && distance < influenceRadius) {
+						const proximity = 1 - distance / influenceRadius;
+						const displacement =
+							pointerDisplacementSpeed * proximity ** 2 * elapsedSeconds;
+						node.x += (dx / distance) * displacement;
+						node.y += (dy / distance) * displacement;
+					}
+				}
+
+				node.vx += Math.cos(node.phase) * 0.35 * elapsedSeconds;
+				node.vy += Math.sin(node.phase) * 0.35 * elapsedSeconds;
+
+				if (node.x < boundaryMargin) {
+					node.vx += boundaryForce * elapsedSeconds;
+				} else if (node.x > width - boundaryMargin) {
+					node.vx -= boundaryForce * elapsedSeconds;
+				}
+
+				if (node.y < boundaryMargin) {
+					node.vy += boundaryForce * elapsedSeconds;
+				} else if (node.y > height - boundaryMargin) {
+					node.vy -= boundaryForce * elapsedSeconds;
+				}
+
+				const currentSpeed = Math.hypot(node.vx, node.vy);
+				if (currentSpeed > maximumSpeed) {
+					const speedRatio = maximumSpeed / currentSpeed;
+					node.vx *= speedRatio;
+					node.vy *= speedRatio;
+				}
+
+				node.x += node.vx * elapsedSeconds;
+				node.y += node.vy * elapsedSeconds;
+			});
+		};
+
+		const drawConnections = () => {
+			const maximumDistance = Math.min(width, height) * 0.27;
+
+			for (let firstIndex = 0; firstIndex < nodes.length; firstIndex += 1) {
+				for (
+					let secondIndex = firstIndex + 1;
+					secondIndex < nodes.length;
+					secondIndex += 1
+				) {
+					const first = nodes[firstIndex];
+					const second = nodes[secondIndex];
+					const distance = Math.hypot(first.x - second.x, first.y - second.y);
+
+					if (distance >= maximumDistance) continue;
+
+					context.beginPath();
+					context.moveTo(first.x, first.y);
+					context.lineTo(second.x, second.y);
+					context.strokeStyle = connectionColor;
+					context.globalAlpha = (1 - distance / maximumDistance) * 0.28;
+					context.lineWidth = 0.7;
+					context.stroke();
+				}
+			}
+		};
+
+		const drawNodes = () => {
+			nodes.forEach((node) => {
+				const pulse = 1 + Math.sin(node.phase) * 0.18;
+				const glowRadius = node.radius * 4.5 * pulse;
+				const glow = context.createRadialGradient(
+					node.x,
+					node.y,
+					0,
+					node.x,
+					node.y,
+					glowRadius,
+				);
+
+				glow.addColorStop(0, accentColor);
+				glow.addColorStop(1, 'transparent');
+				context.beginPath();
+				context.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
+				context.fillStyle = glow;
+				context.globalAlpha = 0.22;
+				context.fill();
+
+				context.beginPath();
+				context.arc(node.x, node.y, node.radius * pulse, 0, Math.PI * 2);
+				context.fillStyle = accentColor;
+				context.globalAlpha = 0.85;
+				context.fill();
+			});
+		};
+
+		const drawPulses = (delta: number) => {
+			const elapsedSeconds = delta / 1000;
+
+			pulses.forEach((pulse) => {
+				pulse.progress += pulse.speed * elapsedSeconds;
+
+				if (pulse.progress > 1) resetPulse(pulse);
+				if (pulse.progress < 0) return;
+
+				const from = nodes[pulse.from];
+				const to = nodes[pulse.to];
+				const x = from.x + (to.x - from.x) * pulse.progress;
+				const y = from.y + (to.y - from.y) * pulse.progress;
+				const glow = context.createRadialGradient(x, y, 0, x, y, 11);
+
+				glow.addColorStop(0, accentStrongColor);
+				glow.addColorStop(1, 'transparent');
+				context.beginPath();
+				context.arc(x, y, 11, 0, Math.PI * 2);
+				context.fillStyle = glow;
+				context.globalAlpha = 0.85;
+				context.fill();
+
+				context.beginPath();
+				context.arc(x, y, 2.2, 0, Math.PI * 2);
+				context.fillStyle = accentStrongColor;
+				context.globalAlpha = 1;
+				context.fill();
+			});
+		};
+
+		const draw = (delta: number) => {
+			context.clearRect(0, 0, width, height);
+
+			const centerGlow = context.createRadialGradient(
+				width / 2,
+				height / 2,
+				0,
+				width / 2,
+				height / 2,
+				Math.min(width, height) * 0.45,
+			);
+			centerGlow.addColorStop(0, accentColor);
+			centerGlow.addColorStop(1, 'transparent');
+			context.fillStyle = centerGlow;
+			context.globalAlpha = 0.045;
+			context.fillRect(0, 0, width, height);
+
+			drawConnections();
+			drawNodes();
+			drawPulses(delta);
+			context.globalAlpha = 1;
+		};
+
+		const animate = (time: number) => {
+			const delta = Math.min(time - lastFrameTime || 16, 32);
+			lastFrameTime = time;
+			updateNodes(delta);
+			draw(delta);
+			animationFrame = requestAnimationFrame(animate);
+		};
+
+		const startAnimation = () => {
+			cancelAnimationFrame(animationFrame);
+			lastFrameTime = 0;
+
+			if (motionPreference.matches || document.hidden) {
+				draw(0);
+				return;
+			}
+
+			animationFrame = requestAnimationFrame(animate);
+		};
+
+		container.addEventListener('pointermove', (event) => {
+			const bounds = container.getBoundingClientRect();
+			pointer = {
+				x: event.clientX - bounds.left,
+				y: event.clientY - bounds.top,
+			};
+		});
+
+		container.addEventListener('pointerleave', () => {
+			pointer = null;
+		});
+
+		document.addEventListener('visibilitychange', startAnimation);
+		motionPreference.addEventListener('change', startAnimation);
+
+		const resizeObserver = new ResizeObserver(resize);
+		resizeObserver.observe(container);
+
+		const themeObserver = new MutationObserver(() => {
+			readPalette();
+			draw(0);
+		});
+		themeObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme'],
+		});
+
+		readPalette();
+		resize();
+		startAnimation();
+	});
+</script>
