@@ -85,6 +85,16 @@ export const translations = {
 		solutionsCtaLead:
 			'Cada empresa opera de manera diferente. Su solución también debería hacerlo.',
 		solutionsCta: 'Exploremos tu solución',
+		projectsLabel: 'Proyectos',
+		projectsTitle: 'Soluciones construidas para generar resultados reales.',
+		projectsDescription:
+			'Este espacio reunirá proyectos que muestran el reto de cada empresa, el camino que seguimos y el resultado alcanzado.',
+		projectsEmptyLabel: 'Próximamente',
+		projectsEmptyTitle: 'Estamos preparando nuestros primeros casos de estudio.',
+		projectsEmptyDescription:
+			'Muy pronto podrás conocer cómo transformamos necesidades de negocio en soluciones digitales claras, funcionales y pensadas para crecer.',
+		projectsEmptyDetail: 'Cada caso incluirá el reto, nuestro proceso y los resultados obtenidos.',
+		projectsCta: 'Cuéntanos sobre tu proyecto',
 	},
 	en: {
 		documentTitle: 'Quellkasten | Enterprise Software Solutions',
@@ -170,6 +180,16 @@ export const translations = {
 		solutionsCtaLead:
 			'Every business operates differently. Its solution should too.',
 		solutionsCta: 'Let’s explore your solution',
+		projectsLabel: 'Projects',
+		projectsTitle: 'Solutions built to deliver real results.',
+		projectsDescription:
+			'This space will feature projects that show each company’s challenge, the path we followed, and the outcome we achieved.',
+		projectsEmptyLabel: 'Coming soon',
+		projectsEmptyTitle: 'We are preparing our first case studies.',
+		projectsEmptyDescription:
+			'Soon you will be able to see how we turn business needs into clear, practical digital solutions designed to grow.',
+		projectsEmptyDetail: 'Each case study will cover the challenge, our process, and the results achieved.',
+		projectsCta: 'Tell us about your project',
 	},
 } as const;
 
