@@ -1,0 +1,179 @@
+---
+import Container from '../../../components/ui/Container.astro';
+
+const services = [
+	{
+		number: '01',
+		title: 'Desarrollo de software a la medida',
+		description:
+			'Creamos sistemas alineados con los procesos, objetivos y necesidades específicas de tu organización.',
+		titleKey: 'serviceCustomTitle',
+		descriptionKey: 'serviceCustomDescription',
+		iconPath: 'M5 4h14v16H5V4Zm4 4-2 2 2 2m3 2h5',
+	},
+	{
+		number: '02',
+		title: 'Aplicaciones y plataformas web',
+		description:
+			'Construimos experiencias web rápidas, accesibles y preparadas para crecer con tu operación.',
+		titleKey: 'serviceWebTitle',
+		descriptionKey: 'serviceWebDescription',
+		iconPath: 'M3 5h18v14H3V5Zm0 4h18M7 7h.01m3 0h.01',
+	},
+	{
+		number: '03',
+		title: 'Automatización de procesos',
+		description:
+			'Reducimos trabajo manual mediante flujos, reportes y herramientas conectadas con tu operación.',
+		titleKey: 'serviceAutomationTitle',
+		descriptionKey: 'serviceAutomationDescription',
+		iconPath: 'M12 3v4m0 10v4M3 12h4m10 0h4M5.6 5.6l2.8 2.8m7.2 7.2 2.8 2.8m0-12.8-2.8 2.8m-7.2 7.2-2.8 2.8M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z',
+	},
+	{
+		number: '04',
+		title: 'Integraciones y APIs',
+		description:
+			'Conectamos sistemas, servicios y fuentes de datos para que la información fluya de forma confiable.',
+		titleKey: 'serviceIntegrationsTitle',
+		descriptionKey: 'serviceIntegrationsDescription',
+		iconPath: 'M7 7h10v10H7V7ZM3 12h4m10 0h4M12 3v4m0 10v4',
+	},
+	{
+		number: '05',
+		title: 'Datos, dashboards y analítica',
+		description:
+			'Transformamos información operativa en visualizaciones claras que facilitan el seguimiento y la toma de decisiones.',
+		titleKey: 'serviceDataTitle',
+		descriptionKey: 'serviceDataDescription',
+		iconPath: 'M4 19V9m5 10V5m5 14v-7m5 7V3M3 19h18',
+	},
+	{
+		number: '06',
+		title: 'Evolución y soporte de software',
+		description:
+			'Mejoramos productos existentes mediante mantenimiento, optimización, nuevas funcionalidades y acompañamiento técnico.',
+		titleKey: 'serviceSupportTitle',
+		descriptionKey: 'serviceSupportDescription',
+		iconPath: 'M4 13a8 8 0 1 0 2-5.3L4 10m0-4v4h4m4-3v5l3 2',
+	},
+];
+---
+
+<section
+	id="servicios"
+	aria-labelledby="services-title"
+	class="relative scroll-mt-28 border-t border-[var(--color-border)] py-20 sm:py-24 lg:py-32"
+>
+	<div
+		aria-hidden="true"
+		class="absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-[var(--color-accent-soft)] to-transparent opacity-60"
+	></div>
+
+	<Container>
+		<div class="grid gap-14 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20">
+			<div class="lg:sticky lg:top-32 lg:self-start">
+				<div class="flex items-center gap-3">
+					<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+					<p
+						data-i18n="servicesLabel"
+						class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+					>
+						Servicios
+					</p>
+				</div>
+
+				<h2
+					id="services-title"
+					data-i18n="servicesTitle"
+					class="mt-5 text-3xl font-bold leading-tight tracking-[-0.035em] text-[var(--color-text)] sm:text-4xl"
+				>
+					Capacidades para llevar una idea desde la estrategia hasta producción.
+				</h2>
+
+				<p
+					data-i18n="servicesDescription"
+					class="mt-5 max-w-xl text-justify text-base leading-7 text-[var(--color-text-muted)]"
+				>
+					Combinamos estrategia, diseño e ingeniería para convertir necesidades de negocio en
+					productos digitales sólidos, mantenibles y preparados para evolucionar.
+				</p>
+
+				<div class="mt-8 border-t border-[var(--color-border)] pt-6">
+					<p
+						data-i18n="servicesCtaLead"
+						class="text-sm leading-6 text-[var(--color-text-soft)]"
+					>
+						¿Tu necesidad no encaja exactamente en una categoría?
+					</p>
+					<a
+						href="#contacto"
+						class="group mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] outline-none transition-colors hover:text-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+					>
+						<span data-i18n="servicesCta">Cuéntanos tu reto</span>
+						<svg
+							aria-hidden="true"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							class="size-4 transition-transform group-hover:translate-x-1"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+						</svg>
+					</a>
+				</div>
+			</div>
+
+			<ol class="border-y border-[var(--color-border)]">
+				{
+					services.map(
+						({
+							number,
+							title,
+							description,
+							titleKey,
+							descriptionKey,
+							iconPath,
+						}) => (
+							<li class="group border-b border-[var(--color-border)] last:border-b-0">
+								<article class="grid gap-4 px-2 py-7 transition-transform duration-200 sm:grid-cols-[3rem_3rem_1fr] sm:items-start sm:px-4 sm:py-8 lg:group-hover:translate-x-1">
+									<span class="font-mono text-xs text-[var(--color-accent)]">{number}</span>
+									<span
+										aria-hidden="true"
+										class="grid size-10 place-items-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-accent)] transition-colors group-hover:border-[var(--color-border-strong)] group-hover:bg-[var(--color-accent-soft)]"
+									>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="size-5"
+										>
+											<path d={iconPath} />
+										</svg>
+									</span>
+									<div>
+										<h3
+											data-i18n={titleKey}
+											class="text-lg font-semibold tracking-[-0.02em] text-[var(--color-text)]"
+										>
+											{title}
+										</h3>
+										<p
+											data-i18n={descriptionKey}
+											class="mt-2 max-w-2xl text-justify text-sm leading-6 text-[var(--color-text-muted)]"
+										>
+											{description}
+										</p>
+									</div>
+								</article>
+							</li>
+						),
+					)
+				}
+			</ol>
+		</div>
+	</Container>
+</section>
