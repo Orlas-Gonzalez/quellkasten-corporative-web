@@ -1,0 +1,297 @@
+---
+import Container from '../../../components/ui/Container.astro';
+
+const principles = [
+	{
+		title: 'Entender antes de construir',
+		description:
+			'Comenzamos por conocer tu negocio, sus usuarios y el problema que debemos resolver.',
+		titleKey: 'aboutPrincipleUnderstandTitle',
+		descriptionKey: 'aboutPrincipleUnderstandDescription',
+		iconPath: 'M12 18.5a6.5 6.5 0 1 0-6.5-6.5M12 8v4l2.5 1.5M4 19l2.5-2.5',
+	},
+	{
+		title: 'Comunicación clara',
+		description: 'Compartimos avances, decisiones y riesgos durante todo el proyecto.',
+		titleKey: 'aboutPrincipleCommunicationTitle',
+		descriptionKey: 'aboutPrincipleCommunicationDescription',
+		iconPath: 'M7 17.5 3.5 20v-4.5A7.5 7.5 0 1 1 7 17.5ZM8 10h8M8 14h5',
+	},
+	{
+		title: 'Pensado para evolucionar',
+		description:
+			'Construimos soluciones que puedan mantenerse y crecer después de su lanzamiento.',
+		titleKey: 'aboutPrincipleEvolutionTitle',
+		descriptionKey: 'aboutPrincipleEvolutionDescription',
+		iconPath: 'M5 19V9m7 10V5m7 14v-7M3 19h18M5 9l7-4 7 7',
+	},
+];
+
+const process = [
+	{
+		number: '01',
+		title: 'Descubrimiento y requerimientos',
+		description:
+			'Conversamos contigo, analizamos el proceso actual y definimos qué necesita resolver el proyecto.',
+		titleKey: 'aboutDiscoveryTitle',
+		descriptionKey: 'aboutDiscoveryDescription',
+		iconPath: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14Zm5 12 4 4M8 11h6M11 8v6',
+	},
+	{
+		number: '02',
+		title: 'Definición de la solución',
+		description: 'Organizamos prioridades, alcance, funcionalidades y una ruta clara de trabajo.',
+		titleKey: 'aboutDefinitionTitle',
+		descriptionKey: 'aboutDefinitionDescription',
+		iconPath: 'M5 4h14v16H5V4Zm4 0v16M9 9h10M9 15h10',
+	},
+	{
+		number: '03',
+		title: 'Diseño y validación',
+		description:
+			'Diseñamos la experiencia y validamos las ideas principales antes de avanzar con el desarrollo.',
+		titleKey: 'aboutDesignTitle',
+		descriptionKey: 'aboutDesignDescription',
+		iconPath: 'm4 17 9-9 3 3-9 9H4v-3ZM14 7l2-2 3 3-2 2M14 18h6',
+	},
+	{
+		number: '04',
+		title: 'Desarrollo por etapas',
+		description:
+			'Construimos la solución en entregas manejables para que puedas revisar avances y compartir retroalimentación.',
+		titleKey: 'aboutDevelopmentTitle',
+		descriptionKey: 'aboutDevelopmentDescription',
+		iconPath: 'm8 9-4 3 4 3m8-6 4 3-4 3M14 5l-4 14',
+	},
+	{
+		number: '05',
+		title: 'Pruebas y lanzamiento',
+		description:
+			'Verificamos el funcionamiento, corregimos detalles y preparamos la solución para su puesta en operación.',
+		titleKey: 'aboutLaunchTitle',
+		descriptionKey: 'aboutLaunchDescription',
+		iconPath: 'M7 13.5 10 16l7-8M12 3a9 9 0 1 1-9 9',
+	},
+	{
+		number: '06',
+		title: 'Mantenimiento y evolución',
+		description:
+			'Después del lanzamiento, damos seguimiento al producto, atendemos mejoras y lo ayudamos a evolucionar con tu negocio.',
+		titleKey: 'aboutMaintenanceTitle',
+		descriptionKey: 'aboutMaintenanceDescription',
+		iconPath: 'M12 6V3l-4 4 4 4V8a6 6 0 1 1-5.2 3M5 19h4',
+	},
+];
+---
+
+<section
+	id="nosotros"
+	aria-labelledby="about-title"
+	class="relative scroll-mt-28 overflow-hidden border-t border-[var(--color-border)] py-20 sm:py-24 lg:py-32"
+>
+	<div
+		aria-hidden="true"
+		class="absolute -right-48 top-32 -z-10 size-[30rem] rounded-full bg-[var(--color-accent)] opacity-[0.06] blur-3xl"
+	></div>
+
+	<Container>
+		<div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+			<header class="lg:sticky lg:top-32">
+				<div class="flex items-center gap-3">
+					<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+					<p
+						data-i18n="aboutLabel"
+						class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+					>
+						Nosotros
+					</p>
+				</div>
+
+				<h2
+					id="about-title"
+					data-i18n="aboutTitle"
+					class="mt-5 text-3xl font-bold leading-tight tracking-[-0.035em] text-[var(--color-text)] sm:text-4xl lg:text-5xl"
+				>
+					No solo desarrollamos software. Construimos soluciones contigo.
+				</h2>
+
+				<p
+					data-i18n="aboutDescription"
+					class="mt-6 text-base leading-7 text-[var(--color-text-muted)]"
+				>
+					En Quellkasten combinamos análisis, diseño e ingeniería para convertir necesidades
+					reales en herramientas digitales útiles. Trabajamos de forma cercana y transparente,
+					involucrándote en las decisiones importantes del proyecto.
+				</p>
+			</header>
+
+			<div class="grid gap-4">
+				{
+					principles.map(({ title, description, titleKey, descriptionKey, iconPath }) => (
+						<article class="group flex gap-5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 shadow-[0_16px_40px_var(--color-shadow)] transition duration-300 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] sm:p-6">
+							<span class="grid size-11 shrink-0 place-items-center rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]">
+								<svg
+									aria-hidden="true"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.6"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="size-5"
+								>
+									<path d={iconPath} />
+								</svg>
+							</span>
+							<div>
+								<h3 data-i18n={titleKey} class="text-lg font-semibold text-[var(--color-text)]">
+									{title}
+								</h3>
+								<p
+									data-i18n={descriptionKey}
+									class="mt-2 text-sm leading-6 text-[var(--color-text-muted)]"
+								>
+									{description}
+								</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="mt-24 sm:mt-28 lg:mt-32">
+			<header class="mx-auto max-w-3xl text-center">
+				<p
+					data-i18n="aboutProcessLabel"
+					class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+				>
+					Nuestro proceso
+				</p>
+				<h3
+					data-i18n="aboutProcessTitle"
+					class="mt-4 text-3xl font-bold leading-tight tracking-[-0.03em] text-[var(--color-text)] sm:text-4xl"
+				>
+					Un camino claro desde la idea hasta su evolución.
+				</h3>
+				<p
+					data-i18n="aboutProcessDescription"
+					class="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--color-text-muted)]"
+				>
+					Cada etapa reduce incertidumbre, mantiene el proyecto alineado y te permite participar
+					en las decisiones que definen el resultado.
+				</p>
+			</header>
+
+			<ol class="relative mx-auto mt-14 max-w-5xl">
+				<div
+					aria-hidden="true"
+					class="absolute bottom-8 left-6 top-8 w-px bg-gradient-to-b from-[var(--color-accent)] via-[var(--color-border-strong)] to-[var(--color-accent)] lg:hidden"
+				></div>
+				<div class="grid gap-5 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-3">
+					{
+						process.map(
+							({ number, title, description, titleKey, descriptionKey, iconPath }, index) => (
+								<li
+									class:list={[
+										'relative pl-16 lg:flex lg:h-full lg:flex-col lg:pl-0',
+										{
+											'lg:order-1': index === 0,
+											'lg:order-2': index === 1,
+											'lg:order-3': index === 2,
+											'lg:order-6': index === 3,
+											'lg:order-5': index === 4,
+											'lg:order-4': index === 5,
+										},
+									]}
+								>
+									{index < 2 && (
+										<span
+											aria-hidden="true"
+											class="absolute left-6 top-6 hidden h-px w-[calc(100%+1.25rem)] bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-border-strong)] lg:block"
+										/>
+									)}
+									{(index === 3 || index === 4) && (
+										<span
+											aria-hidden="true"
+											class="absolute right-[calc(100%-1.5rem)] top-6 hidden h-px w-[calc(100%+1.25rem)] bg-gradient-to-l from-[var(--color-accent)] to-[var(--color-border-strong)] lg:block"
+										/>
+									)}
+									{index === 2 && (
+										<span
+											aria-hidden="true"
+											class="pointer-events-none absolute left-6 top-6 hidden h-[calc(100%+0.75rem)] w-[calc(100%-1.5rem+2rem)] rounded-r-3xl border-y border-r border-[var(--color-accent)] lg:block"
+										/>
+									)}
+									<div class="absolute left-0 top-0 z-10 grid size-12 place-items-center rounded-full border border-[var(--color-border-strong)] bg-[var(--color-surface)] text-[var(--color-accent)] shadow-[0_8px_24px_var(--color-shadow)] lg:relative lg:left-auto lg:top-auto">
+										<svg
+											aria-hidden="true"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="size-5"
+										>
+											<path d={iconPath} />
+										</svg>
+									</div>
+									<article class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 shadow-[0_14px_36px_var(--color-shadow)] lg:mt-5 lg:flex-1">
+										<p class="font-mono text-xs font-medium text-[var(--color-accent)]">{number}</p>
+										<h4
+											data-i18n={titleKey}
+											class="mt-3 text-lg font-semibold leading-snug text-[var(--color-text)]"
+										>
+											{title}
+										</h4>
+										<p
+											data-i18n={descriptionKey}
+											class="mt-3 text-sm leading-6 text-[var(--color-text-muted)]"
+										>
+											{description}
+										</p>
+									</article>
+								</li>
+							),
+						)
+					}
+				</div>
+			</ol>
+
+			<div class="mx-auto mt-12 flex max-w-5xl flex-col items-start justify-between gap-6 rounded-3xl border border-[var(--color-border-strong)] bg-[var(--color-accent-soft)] p-6 sm:flex-row sm:items-center sm:p-8">
+				<div class="max-w-2xl">
+					<p
+						data-i18n="aboutClosingTitle"
+						class="text-lg font-semibold text-[var(--color-text)]"
+					>
+						Tu participación forma parte del proceso.
+					</p>
+					<p
+						data-i18n="aboutClosingDescription"
+						class="mt-2 text-sm leading-6 text-[var(--color-text-muted)]"
+					>
+						Las mejores soluciones nacen de combinar nuestro conocimiento técnico con tu
+						experiencia del negocio.
+					</p>
+				</div>
+				<a
+					href="#contacto"
+					class="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#0f172a] outline-none transition hover:bg-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-page)]"
+				>
+					<span data-i18n="aboutCta">Comencemos a definir tu proyecto</span>
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						class="size-4 transition-transform group-hover:translate-x-1"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+					</svg>
+				</a>
+			</div>
+		</div>
+	</Container>
+</section>
