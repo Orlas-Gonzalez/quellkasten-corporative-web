@@ -56,6 +56,35 @@ export const translations = {
 			'Mejoramos productos existentes mediante mantenimiento, optimización, nuevas funcionalidades y acompañamiento técnico.',
 		servicesCtaLead: '¿Tu necesidad no encaja exactamente en una categoría?',
 		servicesCta: 'Cuéntanos tu reto',
+		solutionsLabel: 'Soluciones',
+		solutionsTitle: 'Tecnología diseñada alrededor de cómo opera tu empresa.',
+		solutionsDescription:
+			'No partimos de una herramienta predeterminada. Analizamos el reto, entendemos el proceso y construimos una solución alineada con tu operación.',
+		solutionsChallengeLabel: 'Reto',
+		solutionsAnswerLabel: 'Solución',
+		solutionVisibilityTitle: 'Información clara para decidir mejor',
+		solutionVisibilityChallenge:
+			'La información importante está repartida en distintos archivos y herramientas, por lo que obtener una visión completa toma demasiado tiempo.',
+		solutionVisibilityAnswer:
+			'Reunimos tus datos más importantes en un solo lugar para que puedas entender lo que ocurre y tomar decisiones con mayor confianza.',
+		solutionEfficiencyTitle: 'Menos tareas repetitivas',
+		solutionEfficiencyChallenge:
+			'Tu equipo dedica parte de su jornada a capturar información, revisar datos y preparar reportes manualmente.',
+		solutionEfficiencyAnswer:
+			'Simplificamos y automatizamos esas tareas para reducir errores y permitir que tu equipo se concentre en actividades de mayor valor.',
+		solutionCentralizedTitle: 'Todo tu trabajo en un mismo lugar',
+		solutionCentralizedChallenge:
+			'La información y el seguimiento de las actividades se encuentran dispersos entre diferentes herramientas y canales.',
+		solutionCentralizedAnswer:
+			'Creamos un espacio central donde tu equipo puede consultar información, organizar procesos y dar seguimiento al trabajo.',
+		solutionExperienceTitle: 'Una mejor experiencia para tus clientes',
+		solutionExperienceChallenge:
+			'Tus clientes encuentran pasos innecesarios, tiempos de espera o diferentes canales para completar una solicitud.',
+		solutionExperienceAnswer:
+			'Diseñamos experiencias digitales más simples y conectadas para que relacionarse con tu empresa sea fácil y consistente.',
+		solutionsCtaLead:
+			'Cada empresa opera de manera diferente. Su solución también debería hacerlo.',
+		solutionsCta: 'Exploremos tu solución',
 	},
 	en: {
 		documentTitle: 'Quellkasten | Enterprise Software Solutions',
@@ -112,6 +141,35 @@ export const translations = {
 			'We improve existing products through maintenance, optimization, new features, and technical guidance.',
 		servicesCtaLead: 'Does your need not fit neatly into a category?',
 		servicesCta: 'Tell us about your challenge',
+		solutionsLabel: 'Solutions',
+		solutionsTitle: 'Technology designed around how your business operates.',
+		solutionsDescription:
+			'We do not start with a predefined tool. We analyze the challenge, understand the process, and build a solution aligned with your operations.',
+		solutionsChallengeLabel: 'Challenge',
+		solutionsAnswerLabel: 'Solution',
+		solutionVisibilityTitle: 'Clear information for better decisions',
+		solutionVisibilityChallenge:
+			'Important information is spread across different files and tools, making it too time-consuming to see the complete picture.',
+		solutionVisibilityAnswer:
+			'We bring your most important data together so you can understand what is happening and make decisions with greater confidence.',
+		solutionEfficiencyTitle: 'Fewer repetitive tasks',
+		solutionEfficiencyChallenge:
+			'Your team spends part of the day entering information, checking data, and preparing reports manually.',
+		solutionEfficiencyAnswer:
+			'We simplify and automate those tasks to reduce errors and help your team focus on higher-value work.',
+		solutionCentralizedTitle: 'All your work in one place',
+		solutionCentralizedChallenge:
+			'Information and activity tracking are scattered across different tools and communication channels.',
+		solutionCentralizedAnswer:
+			'We create one central space where your team can find information, organize processes, and keep track of ongoing work.',
+		solutionExperienceTitle: 'A better experience for your customers',
+		solutionExperienceChallenge:
+			'Your customers encounter unnecessary steps, waiting times, or multiple channels when completing a request.',
+		solutionExperienceAnswer:
+			'We design simpler, connected digital experiences that make interacting with your business easy and consistent.',
+		solutionsCtaLead:
+			'Every business operates differently. Its solution should too.',
+		solutionsCta: 'Let’s explore your solution',
 	},
 } as const;
 

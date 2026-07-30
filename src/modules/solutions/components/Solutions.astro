@@ -1,0 +1,224 @@
+---
+import Container from '../../../components/ui/Container.astro';
+
+const solutions = [
+	{
+		number: '01',
+		title: 'Visibilidad para tomar decisiones',
+		challenge:
+			'La información está distribuida entre hojas de cálculo, sistemas y reportes difíciles de consultar.',
+		answer:
+			'Dashboards que centralizan indicadores, tendencias y alertas para facilitar decisiones oportunas.',
+		titleKey: 'solutionVisibilityTitle',
+		challengeKey: 'solutionVisibilityChallenge',
+		answerKey: 'solutionVisibilityAnswer',
+		iconPath: 'M4 19V9m5 10V5m5 14v-7m5 7V3M3 19h18',
+	},
+	{
+		number: '02',
+		title: 'Procesos más eficientes',
+		challenge:
+			'El equipo invierte tiempo en tareas repetitivas, validaciones manuales y generación de reportes.',
+		answer:
+			'Flujos automatizados que conectan actividades, reducen errores y liberan tiempo operativo.',
+		titleKey: 'solutionEfficiencyTitle',
+		challengeKey: 'solutionEfficiencyChallenge',
+		answerKey: 'solutionEfficiencyAnswer',
+		iconPath: 'M5 12h4l2-6 3 12 2-6h3M4 4h16v16H4V4Z',
+	},
+	{
+		number: '03',
+		title: 'Operación centralizada',
+		challenge:
+			'Los equipos administran información y seguimiento desde herramientas o canales separados.',
+		answer:
+			'Sistemas internos y portales que concentran procesos, datos y colaboración en un solo lugar.',
+		titleKey: 'solutionCentralizedTitle',
+		challengeKey: 'solutionCentralizedChallenge',
+		answerKey: 'solutionCentralizedAnswer',
+		iconPath: 'M4 5h6v6H4V5Zm10 0h6v6h-6V5ZM4 15h6v4H4v-4Zm10 0h6v4h-6v-4ZM10 8h4M7 11v4m10-4v4',
+	},
+	{
+		number: '04',
+		title: 'Experiencias digitales conectadas',
+		challenge:
+			'La interacción con clientes está fragmentada o depende de procesos manuales.',
+		answer:
+			'Plataformas, portales e integraciones que crean una experiencia digital continua y consistente.',
+		titleKey: 'solutionExperienceTitle',
+		challengeKey: 'solutionExperienceChallenge',
+		answerKey: 'solutionExperienceAnswer',
+		iconPath: 'M8 7h8m-8 5h5m-5 5h8M4 4h16v16H4V4Zm12 8 2 2-2 2',
+	},
+];
+---
+
+<section
+	id="soluciones"
+	aria-labelledby="solutions-title"
+	class="relative scroll-mt-28 overflow-hidden border-t border-[var(--color-border)] py-20 sm:py-24 lg:py-32"
+>
+	<div
+		aria-hidden="true"
+		class="absolute -right-40 top-10 -z-10 size-96 rounded-full bg-[var(--color-accent)] opacity-[0.07] blur-3xl"
+	></div>
+	<div
+		aria-hidden="true"
+		class="absolute -left-48 bottom-10 -z-10 size-96 rounded-full bg-[var(--color-accent-strong)] opacity-[0.06] blur-3xl"
+	></div>
+
+	<Container>
+		<header class="mx-auto max-w-3xl text-center">
+			<div class="flex items-center justify-center gap-3">
+				<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+				<p
+					data-i18n="solutionsLabel"
+					class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+				>
+					Soluciones
+				</p>
+				<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+			</div>
+
+			<h2
+				id="solutions-title"
+				data-i18n="solutionsTitle"
+				class="mt-5 text-3xl font-bold leading-tight tracking-[-0.035em] text-[var(--color-text)] sm:text-4xl lg:text-5xl"
+			>
+				Tecnología diseñada alrededor de cómo opera tu empresa.
+			</h2>
+
+			<p
+				data-i18n="solutionsDescription"
+				class="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--color-text-muted)]"
+			>
+				No partimos de una herramienta predeterminada. Analizamos el reto, entendemos el proceso
+				y construimos una solución alineada con tu operación.
+			</p>
+		</header>
+
+		<div class="mt-14 grid gap-5 lg:grid-cols-2">
+			{
+				solutions.map(
+					({
+						number,
+						title,
+						challenge,
+						answer,
+						titleKey,
+						challengeKey,
+						answerKey,
+						iconPath,
+					}) => (
+						<article class="group relative overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 shadow-[0_18px_45px_var(--color-shadow)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-border-strong)] sm:p-7">
+							<div class="flex items-start justify-between gap-5">
+								<div class="flex items-center gap-3">
+									<span class="font-mono text-xs text-[var(--color-accent)]">{number}</span>
+									<span
+										aria-hidden="true"
+										class="grid size-10 place-items-center rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)]"
+									>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="1.6"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="size-5"
+										>
+											<path d={iconPath} />
+										</svg>
+									</span>
+								</div>
+								<span
+									aria-hidden="true"
+									class="size-2 rounded-full bg-[var(--color-accent)] opacity-50 transition-opacity group-hover:opacity-100"
+								></span>
+							</div>
+
+							<h3
+								data-i18n={titleKey}
+								class="mt-5 text-xl font-semibold tracking-[-0.025em] text-[var(--color-text)]"
+							>
+								{title}
+							</h3>
+
+							<div class="mt-5 grid items-stretch gap-3 sm:grid-cols-[1fr_auto_1fr]">
+								<div class="rounded-2xl border border-[var(--color-border)] bg-[var(--color-page)] p-4">
+									<p
+										data-i18n="solutionsChallengeLabel"
+										class="text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-text-muted)]"
+									>
+										Reto
+									</p>
+									<p
+										data-i18n={challengeKey}
+										class="mt-2 text-justify text-sm leading-6 text-[var(--color-text-soft)]"
+									>
+										{challenge}
+									</p>
+								</div>
+
+								<div class="grid place-items-center text-[var(--color-accent)]">
+									<svg
+										aria-hidden="true"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.8"
+										class="size-5 rotate-90 sm:rotate-0"
+									>
+										<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+									</svg>
+								</div>
+
+								<div class="rounded-2xl border border-[var(--color-border-strong)] bg-[var(--color-accent-soft)] p-4">
+									<p
+										data-i18n="solutionsAnswerLabel"
+										class="text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-accent)]"
+									>
+										Solución
+									</p>
+									<p
+										data-i18n={answerKey}
+										class="mt-2 text-justify text-sm leading-6 text-[var(--color-text)]"
+									>
+										{answer}
+									</p>
+								</div>
+							</div>
+						</article>
+					),
+				)
+			}
+		</div>
+
+		<div
+			class="mt-10 flex flex-col items-center justify-between gap-5 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-5 text-center sm:flex-row sm:text-left"
+		>
+			<p
+				data-i18n="solutionsCtaLead"
+				class="text-sm font-medium leading-6 text-[var(--color-text-soft)]"
+			>
+				Cada empresa opera de manera diferente. Su solución también debería hacerlo.
+			</p>
+			<a
+				href="#contacto"
+				class="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#0f172a] outline-none transition hover:bg-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-page)]"
+			>
+				<span data-i18n="solutionsCta">Exploremos tu solución</span>
+				<svg
+					aria-hidden="true"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					class="size-4 transition-transform group-hover:translate-x-1"
+				>
+					<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+				</svg>
+			</a>
+		</div>
+	</Container>
+</section>
