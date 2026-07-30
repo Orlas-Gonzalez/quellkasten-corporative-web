@@ -95,6 +95,45 @@ export const translations = {
 			'Muy pronto podrás conocer cómo transformamos necesidades de negocio en soluciones digitales claras, funcionales y pensadas para crecer.',
 		projectsEmptyDetail: 'Cada caso incluirá el reto, nuestro proceso y los resultados obtenidos.',
 		projectsCta: 'Cuéntanos sobre tu proyecto',
+		aboutLabel: 'Nosotros',
+		aboutTitle: 'No solo desarrollamos software. Construimos soluciones contigo.',
+		aboutDescription:
+			'En Quellkasten combinamos análisis, diseño e ingeniería para convertir necesidades reales en herramientas digitales útiles. Trabajamos de forma cercana y transparente, involucrándote en las decisiones importantes del proyecto.',
+		aboutPrincipleUnderstandTitle: 'Entender antes de construir',
+		aboutPrincipleUnderstandDescription:
+			'Comenzamos por conocer tu negocio, sus usuarios y el problema que debemos resolver.',
+		aboutPrincipleCommunicationTitle: 'Comunicación clara',
+		aboutPrincipleCommunicationDescription:
+			'Compartimos avances, decisiones y riesgos durante todo el proyecto.',
+		aboutPrincipleEvolutionTitle: 'Pensado para evolucionar',
+		aboutPrincipleEvolutionDescription:
+			'Construimos soluciones que puedan mantenerse y crecer después de su lanzamiento.',
+		aboutProcessLabel: 'Nuestro proceso',
+		aboutProcessTitle: 'Un camino claro desde la idea hasta su evolución.',
+		aboutProcessDescription:
+			'Cada etapa reduce incertidumbre, mantiene el proyecto alineado y te permite participar en las decisiones que definen el resultado.',
+		aboutDiscoveryTitle: 'Descubrimiento y requerimientos',
+		aboutDiscoveryDescription:
+			'Conversamos contigo, analizamos el proceso actual y definimos qué necesita resolver el proyecto.',
+		aboutDefinitionTitle: 'Definición de la solución',
+		aboutDefinitionDescription:
+			'Organizamos prioridades, alcance, funcionalidades y una ruta clara de trabajo.',
+		aboutDesignTitle: 'Diseño y validación',
+		aboutDesignDescription:
+			'Diseñamos la experiencia y validamos las ideas principales antes de avanzar con el desarrollo.',
+		aboutDevelopmentTitle: 'Desarrollo por etapas',
+		aboutDevelopmentDescription:
+			'Construimos la solución en entregas manejables para que puedas revisar avances y compartir retroalimentación.',
+		aboutLaunchTitle: 'Pruebas y lanzamiento',
+		aboutLaunchDescription:
+			'Verificamos el funcionamiento, corregimos detalles y preparamos la solución para su puesta en operación.',
+		aboutMaintenanceTitle: 'Mantenimiento y evolución',
+		aboutMaintenanceDescription:
+			'Después del lanzamiento, damos seguimiento al producto, atendemos mejoras y lo ayudamos a evolucionar con tu negocio.',
+		aboutClosingTitle: 'Tu participación forma parte del proceso.',
+		aboutClosingDescription:
+			'Las mejores soluciones nacen de combinar nuestro conocimiento técnico con tu experiencia del negocio.',
+		aboutCta: 'Comencemos a definir tu proyecto',
 	},
 	en: {
 		documentTitle: 'Quellkasten | Enterprise Software Solutions',
@@ -190,6 +229,45 @@ export const translations = {
 			'Soon you will be able to see how we turn business needs into clear, practical digital solutions designed to grow.',
 		projectsEmptyDetail: 'Each case study will cover the challenge, our process, and the results achieved.',
 		projectsCta: 'Tell us about your project',
+		aboutLabel: 'About us',
+		aboutTitle: 'We do more than develop software. We build solutions with you.',
+		aboutDescription:
+			'At Quellkasten, we combine analysis, design, and engineering to turn real needs into useful digital tools. We work closely and transparently, involving you in the decisions that matter throughout the project.',
+		aboutPrincipleUnderstandTitle: 'Understand before building',
+		aboutPrincipleUnderstandDescription:
+			'We begin by learning about your business, its users, and the problem we need to solve.',
+		aboutPrincipleCommunicationTitle: 'Clear communication',
+		aboutPrincipleCommunicationDescription:
+			'We share progress, decisions, and risks throughout the entire project.',
+		aboutPrincipleEvolutionTitle: 'Built to evolve',
+		aboutPrincipleEvolutionDescription:
+			'We create solutions that can be maintained and expanded after launch.',
+		aboutProcessLabel: 'Our process',
+		aboutProcessTitle: 'A clear path from the initial idea to continuous improvement.',
+		aboutProcessDescription:
+			'Every stage reduces uncertainty, keeps the project aligned, and gives you a voice in the decisions that shape the outcome.',
+		aboutDiscoveryTitle: 'Discovery and requirements',
+		aboutDiscoveryDescription:
+			'We talk with you, examine the current process, and define what the project needs to solve.',
+		aboutDefinitionTitle: 'Solution definition',
+		aboutDefinitionDescription:
+			'We organize priorities, scope, features, and a clear roadmap for the work ahead.',
+		aboutDesignTitle: 'Design and validation',
+		aboutDesignDescription:
+			'We design the experience and validate the main ideas before moving into development.',
+		aboutDevelopmentTitle: 'Development in stages',
+		aboutDevelopmentDescription:
+			'We build the solution in manageable releases so you can review progress and share feedback.',
+		aboutLaunchTitle: 'Testing and launch',
+		aboutLaunchDescription:
+			'We verify how everything works, refine the details, and prepare the solution for operation.',
+		aboutMaintenanceTitle: 'Maintenance and evolution',
+		aboutMaintenanceDescription:
+			'After launch, we support the product, address improvements, and help it evolve alongside your business.',
+		aboutClosingTitle: 'Your participation is part of the process.',
+		aboutClosingDescription:
+			'The best solutions come from combining our technical knowledge with your business experience.',
+		aboutCta: 'Let’s start defining your project',
 	},
 } as const;
 
