@@ -1,7 +1,9 @@
 ---
 import Navbar from '../components/navigation/Navbar.astro';
+import Footer from '../components/footer/Footer.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import About from '../modules/about/components/About.astro';
+import Contact from '../modules/contact/components/Contact.astro';
 import Hero from '../modules/home/components/Hero.astro';
 import Projects from '../modules/projects/components/Projects.astro';
 import Services from '../modules/services/components/Services.astro';
@@ -19,5 +21,7 @@ import Solutions from '../modules/solutions/components/Solutions.astro';
 		<Solutions />
 		<Projects />
 		<About />
+		<Contact />
 	</main>
+	<Footer />
 </BaseLayout>
