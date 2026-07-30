@@ -1,0 +1,155 @@
+---
+import Container from '../ui/Container.astro';
+
+const year = new Date().getFullYear();
+
+const navigation = [
+	{ href: '#inicio', label: 'Inicio', key: 'navHome' },
+	{ href: '#servicios', label: 'Servicios', key: 'navServices' },
+	{ href: '#soluciones', label: 'Soluciones', key: 'navSolutions' },
+	{ href: '#proyectos', label: 'Proyectos', key: 'navProjects' },
+	{ href: '#nosotros', label: 'Nosotros', key: 'navAbout' },
+	{ href: '#contacto', label: 'Contacto', key: 'navContact' },
+];
+
+const services = [
+	{ label: 'Software a la medida', key: 'footerServiceCustom' },
+	{ label: 'Aplicaciones y plataformas web', key: 'footerServicePlatforms' },
+	{ label: 'Automatización de procesos', key: 'footerServiceAutomation' },
+	{ label: 'Datos y dashboards', key: 'footerServiceData' },
+];
+---
+
+<footer class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+	<Container>
+		<div class="grid gap-12 py-14 sm:py-16 lg:grid-cols-[1.35fr_0.7fr_0.9fr_1.05fr] lg:gap-10">
+			<div>
+				<a
+					href="#inicio"
+					aria-label="Quellkasten, página de inicio"
+					data-i18n-aria="brandHomeLabel"
+					class="inline-flex items-center gap-3 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+				>
+					<img src="/favicons/favicon.svg" alt="" class="size-11" />
+					<span>
+						<span class="block text-lg font-bold leading-none text-[var(--color-text)]">Quellkasten</span>
+						<span
+							data-i18n="brandTagline"
+							class="mt-1 block text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-text-muted)]"
+						>
+							Desarrollo de software
+						</span>
+					</span>
+				</a>
+				<p
+					data-i18n="footerDescription"
+					class="mt-5 max-w-sm text-sm leading-6 text-[var(--color-text-muted)]"
+				>
+					Ingeniería de software para transformar necesidades de negocio en soluciones digitales
+					claras, útiles y preparadas para crecer.
+				</p>
+			</div>
+
+			<nav aria-labelledby="footer-navigation-title">
+				<h2
+					id="footer-navigation-title"
+					data-i18n="footerNavigationTitle"
+					class="text-sm font-semibold text-[var(--color-text)]"
+				>
+					Navegación
+				</h2>
+				<ul class="mt-5 space-y-3">
+					{
+						navigation.map(({ href, label, key }) => (
+							<li>
+								<a
+									href={href}
+									data-i18n={key}
+									class="text-sm text-[var(--color-text-muted)] transition hover:text-[var(--color-accent)]"
+								>
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div>
+				<h2
+					data-i18n="footerServicesTitle"
+					class="text-sm font-semibold text-[var(--color-text)]"
+				>
+					Lo que hacemos
+				</h2>
+				<ul class="mt-5 space-y-3">
+					{
+						services.map(({ label, key }) => (
+							<li>
+								<a
+									href="#servicios"
+									data-i18n={key}
+									class="text-sm leading-5 text-[var(--color-text-muted)] transition hover:text-[var(--color-accent)]"
+								>
+									{label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<div class="rounded-2xl border border-[var(--color-border-strong)] bg-[var(--color-accent-soft)] p-5">
+				<h2 data-i18n="footerContactTitle" class="font-semibold text-[var(--color-text)]">
+					¿Tienes una idea en mente?
+				</h2>
+				<p
+					data-i18n="footerContactDescription"
+					class="mt-2 text-sm leading-6 text-[var(--color-text-muted)]"
+				>
+					Conversemos sobre el reto y definamos juntos el siguiente paso.
+				</p>
+				<a
+					href="#contacto"
+					class="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] outline-none transition hover:text-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+				>
+					<span data-i18n="footerContactCta">Cuéntanos tu proyecto</span>
+					<svg
+						aria-hidden="true"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						class="size-4 transition-transform group-hover:translate-x-1"
+					>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+					</svg>
+				</a>
+			</div>
+		</div>
+
+		<div class="flex flex-col gap-4 border-t border-[var(--color-border)] py-6 text-xs text-[var(--color-text-muted)] sm:flex-row sm:items-center sm:justify-between">
+			<p>
+				<span>© {year} Quellkasten.</span>
+				{' '}
+				<span data-i18n="footerRights">Todos los derechos reservados.</span>
+			</p>
+			<a
+				href="#inicio"
+				class="inline-flex w-fit items-center gap-2 font-medium transition hover:text-[var(--color-accent)]"
+			>
+				<span data-i18n="footerBackToTop">Volver arriba</span>
+				<svg
+					aria-hidden="true"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					class="size-4"
+				>
+					<path stroke-linecap="round" stroke-linejoin="round" d="m6 15 6-6 6 6" />
+				</svg>
+			</a>
+		</div>
+	</Container>
+</footer>

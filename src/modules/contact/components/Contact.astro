@@ -1,0 +1,299 @@
+---
+import Container from '../../../components/ui/Container.astro';
+
+const guideItems = [
+	{
+		text: 'El problema o necesidad que buscas resolver.',
+		key: 'contactGuideProblem',
+	},
+	{
+		text: 'El resultado que esperas conseguir.',
+		key: 'contactGuideOutcome',
+	},
+	{
+		text: 'Si ya cuentas con una idea, diseño o sistema existente.',
+		key: 'contactGuideContext',
+	},
+];
+---
+
+<section
+	id="contacto"
+	aria-labelledby="contact-title"
+	class="relative scroll-mt-28 overflow-hidden border-t border-[var(--color-border)] py-20 sm:py-24 lg:py-32"
+>
+	<div
+		aria-hidden="true"
+		class="absolute -left-48 bottom-0 -z-10 size-[34rem] rounded-full bg-[var(--color-accent)] opacity-[0.07] blur-3xl"
+	></div>
+
+	<Container>
+		<header class="mx-auto max-w-3xl text-center">
+			<div class="flex items-center justify-center gap-3">
+				<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+				<p
+					data-i18n="contactLabel"
+					class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+				>
+					Contacto
+				</p>
+				<span class="h-px w-8 bg-[var(--color-accent)]" aria-hidden="true"></span>
+			</div>
+			<h2
+				id="contact-title"
+				data-i18n="contactTitle"
+				class="mt-5 text-3xl font-bold leading-tight tracking-[-0.035em] text-[var(--color-text)] sm:text-4xl lg:text-5xl"
+			>
+				Hablemos de lo que quieres construir.
+			</h2>
+			<p
+				data-i18n="contactDescription"
+				class="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--color-text-muted)]"
+			>
+				Cuéntanos qué necesitas resolver, qué idea tienes en mente o qué proceso quieres mejorar.
+				Revisaremos el contexto de tu proyecto para definir juntos el siguiente paso.
+			</p>
+		</header>
+
+		<div class="mx-auto mt-14 grid max-w-6xl overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_28px_80px_var(--color-shadow)] lg:grid-cols-[0.8fr_1.2fr]">
+			<aside class="relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-accent-soft)] p-7 sm:p-10 lg:border-b-0 lg:border-r lg:p-12">
+				<div
+					aria-hidden="true"
+					class="absolute -right-20 -top-20 size-64 rounded-full border border-[var(--color-accent)] opacity-10"
+				></div>
+				<div
+					aria-hidden="true"
+					class="absolute -right-8 -top-8 size-32 rounded-full border border-[var(--color-accent)] opacity-15"
+				></div>
+
+				<div class="relative">
+					<p
+						data-i18n="contactGuideLabel"
+						class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-accent)]"
+					>
+						Para comenzar
+					</p>
+					<h3
+						data-i18n="contactGuideTitle"
+						class="mt-4 text-2xl font-semibold leading-tight tracking-[-0.025em] text-[var(--color-text)] sm:text-3xl"
+					>
+						No necesitas tener todo definido.
+					</h3>
+					<p
+						data-i18n="contactGuideDescription"
+						class="mt-5 text-sm leading-6 text-[var(--color-text-muted)]"
+					>
+						Puedes compartirnos la información que tengas disponible. Estas preguntas nos ayudarán
+						a entender mejor el punto de partida.
+					</p>
+
+					<ul class="mt-8 space-y-5">
+						{
+							guideItems.map(({ text, key }, index) => (
+								<li class="flex items-start gap-4">
+									<span class="grid size-8 shrink-0 place-items-center rounded-full border border-[var(--color-border-strong)] bg-[var(--color-surface)] font-mono text-xs font-semibold text-[var(--color-accent)]">
+										{String(index + 1).padStart(2, '0')}
+									</span>
+									<p data-i18n={key} class="pt-1 text-sm leading-6 text-[var(--color-text-soft)]">
+										{text}
+									</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</aside>
+
+			<div class="p-7 sm:p-10 lg:p-12">
+				<h3
+					data-i18n="contactFormTitle"
+					class="text-2xl font-semibold tracking-[-0.025em] text-[var(--color-text)]"
+				>
+					Cuéntanos sobre tu proyecto
+				</h3>
+				<p data-i18n="contactFormDescription" class="mt-2 text-sm text-[var(--color-text-muted)]">
+					Completa los datos y prepararemos la conversación inicial.
+				</p>
+
+				<form class="mt-8 grid gap-5" data-contact-form novalidate>
+					<div class="grid gap-5 sm:grid-cols-2">
+						<label class="grid gap-2 text-sm font-medium text-[var(--color-text)]">
+							<span data-i18n="contactNameLabel">Nombre</span>
+							<input
+								type="text"
+								name="name"
+								required
+								autocomplete="name"
+								data-placeholder-es="Tu nombre"
+								data-placeholder-en="Your name"
+								placeholder="Tu nombre"
+								class="h-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-page)] px-4 text-sm text-[var(--color-text)] outline-none transition placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]"
+							/>
+						</label>
+
+						<label class="grid gap-2 text-sm font-medium text-[var(--color-text)]">
+							<span class="flex items-center justify-between gap-3">
+								<span data-i18n="contactCompanyLabel">Empresa</span>
+								<span
+									data-i18n="contactOptional"
+									class="text-xs font-normal text-[var(--color-text-muted)]">Opcional</span
+								>
+							</span>
+							<input
+								type="text"
+								name="company"
+								autocomplete="organization"
+								data-placeholder-es="Nombre de tu empresa"
+								data-placeholder-en="Your company name"
+								placeholder="Nombre de tu empresa"
+								class="h-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-page)] px-4 text-sm text-[var(--color-text)] outline-none transition placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]"
+							/>
+						</label>
+					</div>
+
+					<label class="grid gap-2 text-sm font-medium text-[var(--color-text)]">
+						<span data-i18n="contactEmailLabel">Correo electrónico</span>
+						<input
+							type="email"
+							name="email"
+							required
+							autocomplete="email"
+							data-placeholder-es="nombre@empresa.com"
+							data-placeholder-en="name@company.com"
+							placeholder="nombre@empresa.com"
+							class="h-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-page)] px-4 text-sm text-[var(--color-text)] outline-none transition placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]"
+						/>
+					</label>
+
+					<label class="grid gap-2 text-sm font-medium text-[var(--color-text)]">
+						<span data-i18n="contactProjectTypeLabel">Tipo de proyecto</span>
+						<select
+							name="projectType"
+							required
+							class="h-12 rounded-xl border border-[var(--color-border)] bg-[var(--color-page)] px-4 text-sm text-[var(--color-text)] outline-none transition focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]"
+						>
+							<option value="" selected disabled data-i18n="contactProjectTypePlaceholder">
+								Selecciona una opción
+							</option>
+							<option value="custom" data-i18n="contactProjectTypeCustom">Software a la medida</option>
+							<option value="web" data-i18n="contactProjectTypeWeb">
+								Aplicación o plataforma web
+							</option>
+							<option value="automation" data-i18n="contactProjectTypeAutomation">
+								Automatización de procesos
+							</option>
+							<option value="data" data-i18n="contactProjectTypeData">
+								Datos, dashboards o reportes
+							</option>
+							<option value="integration" data-i18n="contactProjectTypeIntegration">
+								Integración de sistemas
+							</option>
+							<option value="other" data-i18n="contactProjectTypeOther">
+								Otro o aún no lo sé
+							</option>
+						</select>
+					</label>
+
+					<label class="grid gap-2 text-sm font-medium text-[var(--color-text)]">
+						<span data-i18n="contactMessageLabel">¿Qué te gustaría resolver?</span>
+						<textarea
+							name="message"
+							required
+							rows="5"
+							data-placeholder-es="Cuéntanos brevemente sobre la necesidad, el proceso actual o la idea que tienes en mente."
+							data-placeholder-en="Tell us briefly about the need, current process, or idea you have in mind."
+							placeholder="Cuéntanos brevemente sobre la necesidad, el proceso actual o la idea que tienes en mente."
+							class="resize-y rounded-xl border border-[var(--color-border)] bg-[var(--color-page)] px-4 py-3 text-sm leading-6 text-[var(--color-text)] outline-none transition placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:ring-2 focus:ring-[var(--color-accent-soft)]"
+						></textarea>
+					</label>
+
+					<label class="flex cursor-pointer items-start gap-3 text-sm leading-6 text-[var(--color-text-muted)]">
+						<input
+							type="checkbox"
+							name="consent"
+							required
+							class="mt-1 size-4 shrink-0 accent-[var(--color-accent)]"
+						/>
+						<span data-i18n="contactConsent">
+							Acepto que mis datos sean utilizados únicamente para responder a esta solicitud.
+						</span>
+					</label>
+
+					<div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+						<button
+							type="submit"
+							class="group inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-[#0f172a] outline-none transition hover:bg-[var(--color-accent-strong)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface)]"
+						>
+							<span data-i18n="contactSubmit">Enviar información del proyecto</span>
+							<svg
+								aria-hidden="true"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.8"
+								class="size-4 transition-transform group-hover:translate-x-1"
+							>
+								<path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-5-5 5 5-5 5" />
+							</svg>
+						</button>
+						<p
+							data-i18n="contactFormNotice"
+							class="max-w-sm text-xs leading-5 text-[var(--color-text-muted)]"
+						>
+							El canal de envío aún no está configurado. Por ahora, la información no saldrá de
+							tu navegador.
+						</p>
+					</div>
+
+					<p
+						data-contact-status
+						data-i18n="contactFormStatus"
+						role="status"
+						aria-live="polite"
+						class="hidden rounded-xl border border-[var(--color-border-strong)] bg-[var(--color-accent-soft)] px-4 py-3 text-sm leading-6 text-[var(--color-text)]"
+					>
+						El formulario está listo, pero necesitamos configurar el canal de recepción antes de
+						poder enviar tu información.
+					</p>
+				</form>
+			</div>
+		</div>
+	</Container>
+</section>
+
+<script>
+	const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
+	const contactStatus = document.querySelector<HTMLElement>('[data-contact-status]');
+	const localizedFields = document.querySelectorAll<
+		HTMLInputElement | HTMLTextAreaElement
+	>('[data-placeholder-es][data-placeholder-en]');
+
+	const updateContactPlaceholders = () => {
+		const language = document.documentElement.lang === 'en' ? 'en' : 'es';
+
+		localizedFields.forEach((field) => {
+			const placeholder =
+				language === 'en' ? field.dataset.placeholderEn : field.dataset.placeholderEs;
+
+			if (placeholder) field.placeholder = placeholder;
+		});
+	};
+
+	updateContactPlaceholders();
+
+	new MutationObserver(updateContactPlaceholders).observe(document.documentElement, {
+		attributeFilter: ['lang'],
+	});
+
+	contactForm?.addEventListener('submit', (event) => {
+		event.preventDefault();
+
+		if (!contactForm.checkValidity()) {
+			contactForm.reportValidity();
+			return;
+		}
+
+		contactStatus?.classList.remove('hidden');
+		contactStatus?.focus();
+	});
+</script>
