@@ -8,11 +8,63 @@ import Hero from '../modules/home/components/Hero.astro';
 import Projects from '../modules/projects/components/Projects.astro';
 import Services from '../modules/services/components/Services.astro';
 import Solutions from '../modules/solutions/components/Solutions.astro';
+
+const description =
+	'Quellkasten diseña y desarrolla software a la medida, plataformas web, automatizaciones, integraciones y soluciones de datos para empresas.';
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Quellkasten',
+	description,
+	makesOffer: {
+		'@type': 'OfferCatalog',
+		name: 'Servicios de desarrollo de software',
+		itemListElement: [
+			{
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: 'Desarrollo de software a la medida',
+				},
+			},
+			{
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: 'Aplicaciones y plataformas web',
+				},
+			},
+			{
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: 'Automatización de procesos',
+				},
+			},
+			{
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: 'Integraciones de sistemas y APIs',
+				},
+			},
+			{
+				'@type': 'Offer',
+				itemOffered: {
+					'@type': 'Service',
+					name: 'Datos, dashboards y analítica',
+				},
+			},
+		],
+	},
+};
 ---
 
 <BaseLayout
 	title="Quellkasten | Soluciones de Software para Empresas"
-	description="Sitio corporativo de Quellkasten"
+	{description}
+	{structuredData}
 >
 	<Navbar />
 	<main>
