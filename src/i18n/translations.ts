@@ -3,7 +3,8 @@ export const defaultLanguage = 'es';
 export const translations = {
 	es: {
 		documentTitle: 'Quellkasten | Soluciones de Software para Empresas',
-		documentDescription: 'Sitio corporativo de Quellkasten',
+		documentDescription:
+			'Quellkasten diseña y desarrolla software a la medida, plataformas web, automatizaciones, integraciones y soluciones de datos para empresas.',
 		navLabel: 'Navegación principal',
 		brandHomeLabel: 'Quellkasten, página de inicio',
 		brandTagline: 'Desarrollo de software',
@@ -188,7 +189,8 @@ export const translations = {
 	},
 	en: {
 		documentTitle: 'Quellkasten | Enterprise Software Solutions',
-		documentDescription: 'Quellkasten corporate website',
+		documentDescription:
+			'Quellkasten designs and develops custom software, web platforms, automation, integrations, and data solutions for businesses.',
 		navLabel: 'Main navigation',
 		brandHomeLabel: 'Quellkasten, home page',
 		brandTagline: 'Software development',
