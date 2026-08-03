@@ -5,7 +5,6 @@ const navigationItems = [
 	{ label: 'Inicio', href: '#inicio', translationKey: 'navHome' },
 	{ label: 'Servicios', href: '#servicios', translationKey: 'navServices' },
 	{ label: 'Soluciones', href: '#soluciones', translationKey: 'navSolutions' },
-	{ label: 'Proyectos', href: '#proyectos', translationKey: 'navProjects' },
 	{ label: 'Nosotros', href: '#nosotros', translationKey: 'navAbout' },
 	{ label: 'Contacto', href: '#contacto', translationKey: 'navContact' },
 ];
@@ -21,7 +20,7 @@ const navigationItems = [
 		>
 			<div class="flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-5">
 				<a
-					href="/"
+					href="#inicio"
 					aria-label="Quellkasten, página de inicio"
 					data-i18n-aria="brandHomeLabel"
 					class="group flex shrink-0 items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] sm:gap-2.5"
@@ -52,13 +51,10 @@ const navigationItems = [
 							<a
 								href={href}
 								data-i18n={translationKey}
-								aria-current={index === 0 ? 'page' : undefined}
-								class:list={[
-									'rounded-lg px-3 py-2 text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]',
-									index === 0
-										? 'bg-[var(--color-accent-soft)] text-[var(--color-accent)]'
-										: 'text-[var(--color-text-muted)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-text)]',
-								]}
+								data-nav-link
+								data-active={index === 0 ? 'true' : 'false'}
+								aria-current={index === 0 ? 'location' : undefined}
+								class="rounded-lg px-3 py-2 text-sm font-medium text-[var(--color-text-muted)] outline-none transition-colors hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-text)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] data-[active=true]:bg-[var(--color-accent-soft)] data-[active=true]:text-[var(--color-accent)]"
 							>
 								{label}
 							</a>
@@ -183,13 +179,10 @@ const navigationItems = [
 								<a
 									href={href}
 									data-i18n={translationKey}
-									aria-current={index === 0 ? 'page' : undefined}
-									class:list={[
-										'w-full max-w-sm rounded-xl px-4 py-3 text-center text-sm font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]',
-										index === 0
-											? 'bg-[var(--color-accent-soft)] text-[var(--color-accent)]'
-											: 'text-[var(--color-text-muted)] hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-text)]',
-									]}
+									data-nav-link
+									data-active={index === 0 ? 'true' : 'false'}
+									aria-current={index === 0 ? 'location' : undefined}
+									class="w-full max-w-sm rounded-xl px-4 py-3 text-center text-sm font-medium text-[var(--color-text-muted)] outline-none transition-colors hover:bg-[var(--color-accent-hover)] hover:text-[var(--color-text)] focus-visible:ring-2 focus-visible:ring-[var(--color-accent)] data-[active=true]:bg-[var(--color-accent-soft)] data-[active=true]:text-[var(--color-accent)]"
 								>
 									{label}
 								</a>
@@ -223,6 +216,19 @@ const navigationItems = [
 		const sunIcon = navbar.querySelector<SVGElement>('[data-theme-icon="sun"]');
 		const languageCurrent = navbar.querySelector<HTMLElement>('[data-language-current]');
 		const languageNext = navbar.querySelector<HTMLElement>('[data-language-next]');
+		const navigationLinks = Array.from(
+			navbar.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'),
+		);
+		const sectionIds = [
+			...new Set(
+				navigationLinks
+					.map((link) => link.hash.slice(1))
+					.filter((sectionId) => sectionId.length > 0),
+			),
+		];
+		const sections = sectionIds
+			.map((sectionId) => document.getElementById(sectionId))
+			.filter((section): section is HTMLElement => section !== null);
 
 		const getInitialLanguage = (): Language => {
 			try {
@@ -241,8 +247,28 @@ const navigationItems = [
 			document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 
 		let currentLanguage = getInitialLanguage();
+		let activeSectionId = 'inicio';
 
 		const isMenuOpen = () => toggle?.getAttribute('aria-expanded') === 'true';
+
+		const setActiveSection = (sectionId: string, updateHash = true) => {
+			if (!sectionIds.includes(sectionId)) return;
+
+			activeSectionId = sectionId;
+			navigationLinks.forEach((link) => {
+				const isActive = link.hash === `#${sectionId}`;
+				link.dataset.active = String(isActive);
+				if (isActive) {
+					link.setAttribute('aria-current', 'location');
+				} else {
+					link.removeAttribute('aria-current');
+				}
+			});
+
+			if (updateHash && window.location.hash !== `#${sectionId}`) {
+				history.replaceState(null, '', `#${sectionId}`);
+			}
+		};
 
 		const updateMenuLabel = () => {
 			if (!toggle) return;
@@ -368,6 +394,43 @@ const navigationItems = [
 				if (matches) setMenuState(false);
 			});
 		}
+
+		navigationLinks.forEach((link) => {
+			link.addEventListener('click', () => {
+				setActiveSection(link.hash.slice(1), false);
+			});
+		});
+
+		const requestedSectionId = window.location.hash.slice(1);
+		setActiveSection(
+			sectionIds.includes(requestedSectionId) ? requestedSectionId : activeSectionId,
+			false,
+		);
+
+		if ('IntersectionObserver' in window) {
+			const sectionObserver = new IntersectionObserver(
+				(entries) => {
+					const visibleSection = entries
+						.filter((entry) => entry.isIntersecting)
+						.sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top)[0];
+
+					if (visibleSection?.target.id) {
+						setActiveSection(visibleSection.target.id);
+					}
+				},
+				{
+					rootMargin: '-25% 0px -65% 0px',
+					threshold: 0,
+				},
+			);
+
+			sections.forEach((section) => sectionObserver.observe(section));
+		}
+
+		window.addEventListener('hashchange', () => {
+			const sectionId = window.location.hash.slice(1);
+			if (sectionIds.includes(sectionId)) setActiveSection(sectionId, false);
+		});
 
 		themeToggle?.addEventListener('click', () => {
 			setTheme(getCurrentTheme() === 'dark' ? 'light' : 'dark');

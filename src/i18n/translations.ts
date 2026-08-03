@@ -5,6 +5,7 @@ export const translations = {
 		documentTitle: 'Quellkasten | Soluciones de Software para Empresas',
 		documentDescription:
 			'Quellkasten diseña y desarrolla software a la medida, plataformas web, automatizaciones, integraciones y soluciones de datos para empresas.',
+		skipToContent: 'Saltar al contenido',
 		navLabel: 'Navegación principal',
 		brandHomeLabel: 'Quellkasten, página de inicio',
 		brandTagline: 'Desarrollo de software',
@@ -191,6 +192,7 @@ export const translations = {
 		documentTitle: 'Quellkasten | Enterprise Software Solutions',
 		documentDescription:
 			'Quellkasten designs and develops custom software, web platforms, automation, integrations, and data solutions for businesses.',
+		skipToContent: 'Skip to content',
 		navLabel: 'Main navigation',
 		brandHomeLabel: 'Quellkasten, home page',
 		brandTagline: 'Software development',
