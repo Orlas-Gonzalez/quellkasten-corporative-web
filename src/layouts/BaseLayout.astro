@@ -66,6 +66,29 @@ const {
 		}
 	</head>
 	<body class="min-h-screen bg-[var(--color-page)] text-[var(--color-text)] antialiased">
+		<a
+			href="#contenido-principal"
+			data-skip-link
+			data-i18n="skipToContent"
+			class="fixed left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-[var(--color-accent)] px-4 py-3 text-sm font-semibold text-[#0f172a] opacity-0 shadow-lg outline-none transition focus:translate-y-0 focus:opacity-100 focus-visible:ring-2 focus-visible:ring-[var(--color-text)]"
+		>
+			Saltar al contenido
+		</a>
 		<slot />
+
+		<script>
+			const skipLink = document.querySelector<HTMLAnchorElement>('[data-skip-link]');
+			const mainContent = document.querySelector<HTMLElement>('#contenido-principal');
+
+			skipLink?.addEventListener('click', (event) => {
+				if (!mainContent) return;
+
+				event.preventDefault();
+				const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				mainContent.focus({ preventScroll: true });
+				mainContent.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+				history.replaceState(null, '', '#contenido-principal');
+			});
+		</script>
 	</body>
 </html>
